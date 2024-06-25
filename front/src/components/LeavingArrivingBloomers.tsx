@@ -39,40 +39,51 @@ export default function LeavingArrivingBloomers() {
     return sortedObject;
   };
 
+  const formatMissions = (missions: Mission[], sortBy: "begin" | "end") => {
+    let map = new Map();
+
+    missions.forEach((mission) => {
+      const formatedMission = {
+        id: mission.id,
+        firstname: mission.freelance.firstname,
+        lastname: mission.freelance.lastname,
+        beginMission: mission.beginDate,
+        endMission: mission.endDate,
+      };
+
+      const key = sortBy === "begin" ? mission.beginDate : mission.endDate;
+
+      if (map.has(key)) {
+        map.get(key).push(formatedMission);
+      } else {
+        map.set(key, [formatedMission]);
+      }
+    });
+
+    return Object.fromEntries(map);
+  };
+
+  // Arriving Bloomers
+
   const nextBeginningMissions = missions.filter((mission: Mission) => {
     return isDateIsWithinNextMonth(new Date(mission.beginDate));
   });
+
+  const arriving = formatMissions(nextBeginningMissions, "begin");
+
+  const sortedArriving = sortObjectByDate(arriving);
+
+  // Leaving Bloomers
 
   const nextEndingMissions = missions.filter((mission: Mission) => {
     return isDateIsWithinNextMonth(new Date(mission.endDate));
   });
 
-  const arrivingMap = new Map();
-  const leavingMap = new Map();
+  const leaving = formatMissions(nextEndingMissions, "end");
 
-  nextBeginningMissions.forEach((mission: Mission) => {
-    if (arrivingMap.has(mission.beginDate)) {
-      arrivingMap.get(mission.beginDate).push(mission);
-    } else {
-      arrivingMap.set(mission.beginDate, [mission]);
-    }
-  });
-
-  nextEndingMissions.forEach((mission: Mission) => {
-    if (leavingMap.has(mission.endDate)) {
-      leavingMap.get(mission.endDate).push(mission);
-    } else {
-      leavingMap.set(mission.endDate, [mission]);
-    }
-  });
-
-  const arriving = Object.fromEntries(arrivingMap);
-  const leaving = Object.fromEntries(leavingMap);
-
-  const sortedArriving = sortObjectByDate(arriving);
   const sortedLeaving = sortObjectByDate(leaving);
 
-  console.log(sortedArriving, "sortedArriving");
+  // Fetch api
 
   useEffect(() => {
     const fetchData = async () => {
