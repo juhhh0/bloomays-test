@@ -1,67 +1,10 @@
 import { useEffect, useState } from "react";
+import { Mission } from "../types/types";
+import { formatMissions, isDateIsWithinNextMonth, sortObjectByDate } from "../utils/utils";
 
-type Freelance = {
-  firstname: string;
-  lastname: string;
-  email: string;
-};
-
-type Mission = {
-  id: number;
-  beginDate: string;
-  endDate: string;
-  missionType: string;
-  label: string;
-  freelance: Freelance;
-};
 
 export default function LeavingArrivingBloomers() {
   const [missions, setMissions] = useState([]);
-
-  const isDateIsWithinNextMonth = (date: Date) => {
-    const now = new Date();
-    const nextMonth = new Date(now.getFullYear(), now.getMonth() + 2, 0);
-
-    return date >= now && date <= nextMonth;
-  };
-
-  const sortObjectByDate = (obj: any) => {
-    const sortedKeys = Object.keys(obj).sort((a, b) => {
-      return new Date(a) > new Date(b) ? 1 : -1;
-    });
-
-    const sortedObject: { [key: string]: any } = {};
-
-    sortedKeys.forEach((key) => {
-      sortedObject[key] = obj[key];
-    });
-
-    return sortedObject;
-  };
-
-  const formatMissions = (missions: Mission[], sortBy: "begin" | "end") => {
-    let map = new Map();
-
-    missions.forEach((mission) => {
-      const formatedMission = {
-        id: mission.id,
-        firstname: mission.freelance.firstname,
-        lastname: mission.freelance.lastname,
-        beginMission: mission.beginDate,
-        endMission: mission.endDate,
-      };
-
-      const key = sortBy === "begin" ? mission.beginDate : mission.endDate;
-
-      if (map.has(key)) {
-        map.get(key).push(formatedMission);
-      } else {
-        map.set(key, [formatedMission]);
-      }
-    });
-
-    return Object.fromEntries(map);
-  };
 
   // Arriving Bloomers
 
@@ -82,6 +25,8 @@ export default function LeavingArrivingBloomers() {
   const leaving = formatMissions(nextEndingMissions, "end");
 
   const sortedLeaving = sortObjectByDate(leaving);
+
+  console.log(sortedArriving, sortedLeaving)
 
   // Fetch api
 
