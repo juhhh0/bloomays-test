@@ -1,9 +1,7 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import LeavingArrivingBloomers from "./components/LeavingArrivingBloomers";
 
 function App() {
-  return <main>Bloomays</main>;
+  return <LeavingArrivingBloomers/>;
 }
 
 export default App;
