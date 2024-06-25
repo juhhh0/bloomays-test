@@ -25,6 +25,20 @@ export default function LeavingArrivingBloomers() {
     return date >= now && date <= nextMonth;
   };
 
+  const sortObjectByDate = (obj: any) => {
+    const sortedKeys = Object.keys(obj).sort((a, b) => {
+      return new Date(a) > new Date(b) ? 1 : -1;
+    });
+
+    const sortedObject: { [key: string]: any } = {};
+
+    sortedKeys.forEach((key) => {
+      sortedObject[key] = obj[key];
+    });
+
+    return sortedObject;
+  };
+
   const nextBeginningMissions = missions.filter((mission: Mission) => {
     return isDateIsWithinNextMonth(new Date(mission.beginDate));
   });
@@ -33,26 +47,32 @@ export default function LeavingArrivingBloomers() {
     return isDateIsWithinNextMonth(new Date(mission.endDate));
   });
 
-  const arriving = new Map();
-  const leaving = new Map();
+  const arrivingMap = new Map();
+  const leavingMap = new Map();
 
   nextBeginningMissions.forEach((mission: Mission) => {
-    if (arriving.has(mission.beginDate)) {
-      arriving.get(mission.beginDate).push(mission);
+    if (arrivingMap.has(mission.beginDate)) {
+      arrivingMap.get(mission.beginDate).push(mission);
     } else {
-      arriving.set(mission.beginDate, [mission]);
+      arrivingMap.set(mission.beginDate, [mission]);
     }
   });
 
   nextEndingMissions.forEach((mission: Mission) => {
-    if (leaving.has(mission.endDate)) {
-      leaving.get(mission.endDate).push(mission);
+    if (leavingMap.has(mission.endDate)) {
+      leavingMap.get(mission.endDate).push(mission);
     } else {
-      leaving.set(mission.endDate, [mission]);
+      leavingMap.set(mission.endDate, [mission]);
     }
-  })
+  });
 
-  console.log(arriving, leaving);
+  const arriving = Object.fromEntries(arrivingMap);
+  const leaving = Object.fromEntries(leavingMap);
+
+  const sortedArriving = sortObjectByDate(arriving);
+  const sortedLeaving = sortObjectByDate(leaving);
+
+  console.log(sortedArriving, "sortedArriving");
 
   useEffect(() => {
     const fetchData = async () => {
