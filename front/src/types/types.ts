@@ -13,4 +13,12 @@ type Mission = {
   freelance: Freelance;
 };
 
-export type { Freelance, Mission };
+type FormatedMission = {
+  id: number;
+  firstname: string;
+  lastname: string;
+  beginMission: string;
+  endMission: string;
+};
+
+export type { Freelance, Mission, FormatedMission };
