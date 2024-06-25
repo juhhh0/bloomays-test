@@ -1,0 +1,7 @@
+back/dist
+back/node_modules
+back/build
+back/.env
+
+front/node_modules
+
