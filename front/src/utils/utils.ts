@@ -15,7 +15,7 @@ import { Mission } from "../types/types";
 
   const sortObjectByDate = (obj: any) => {
     const sortedKeys = Object.keys(obj).sort((a, b) => {
-      return new Date(a) > new Date(b) ? 1 : -1;
+      return new Date(a).getTime() - new Date(b).getTime() 
     });
 
     const sortedObject: { [key: string]: any } = {};
