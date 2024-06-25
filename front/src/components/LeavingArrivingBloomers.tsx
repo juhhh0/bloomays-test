@@ -5,6 +5,7 @@ import {
   isDateIsWithinNextMonth,
   sortObjectByDate,
 } from "../utils/utils";
+import styles from "./LeavingArrivingBloomers.module.scss";
 
 type MissionsStateType = {
   [key: string]: FormatedMission[];
@@ -70,17 +71,19 @@ const Bloomers = ({
   data: MissionsStateType;
   type: "leaving" | "arriving";
 }) => {
-
   const totalBloomers = Object.keys(data).reduce((acc, date) => {
     return acc + data[date].length;
   }, 0);
 
   return (
-    <div>
-      {totalBloomers} Bloomers {type === "leaving" ? "sortants" : "entrants"}
-      <div>
+    <div className={`${styles.container} ${type === "leaving" ? styles.red : ""}`}>
+      <h2>
+        <span>{totalBloomers}</span>
+        Bloomers {type === "leaving" ? "sortants" : "entrants"}
+      </h2>
+      <div className={styles.dates}>
         {Object.keys(data).map((date) => (
-          <DateItem date={date} missions={data[date]} />
+          <DateItem key={date} date={date} missions={data[date]} />
         ))}
       </div>
     </div>
@@ -95,11 +98,11 @@ const DateItem = ({
   missions: FormatedMission[];
 }) => {
   return (
-    <div>
+    <div className={styles.date}>
       <p>{date}</p>
       <ul>
         {missions.map((mission) => (
-          <li key={mission.id}>
+          <li key={mission.id} className={styles.bloomer}>
             {mission.firstname} {mission.lastname}
           </li>
         ))}
