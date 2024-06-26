@@ -12,5 +12,9 @@
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #f9f9f9;
+  display: flex;
+  min-height: 100dvh;
+  justify-content: center;
+  align-items: center;
 }
 

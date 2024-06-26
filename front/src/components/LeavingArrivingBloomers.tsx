@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FormatedMission, Mission } from "../types/types";
 import {
-    formatDate,
+  formatDate,
   formatMissions,
   isDateIsWithinNextMonth,
   sortObjectByDate,
@@ -58,7 +58,7 @@ export default function LeavingArrivingBloomers() {
   }, []);
 
   return (
-    <div>
+    <div className={styles.modal}>
       <Bloomers data={arriving} type="arriving" />
       <Bloomers data={leaving} type="leaving" />
     </div>
@@ -100,7 +100,6 @@ const DateItem = ({
   date: string;
   missions: FormatedMission[];
 }) => {
-
   const formattedDate = formatDate(date);
 
   return (
