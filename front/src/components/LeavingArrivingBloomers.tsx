@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FormatedMission, Mission } from "../types/types";
 import {
+    formatDate,
   formatMissions,
   isDateIsWithinNextMonth,
   sortObjectByDate,
@@ -76,7 +77,9 @@ const Bloomers = ({
   }, 0);
 
   return (
-    <div className={`${styles.container} ${type === "leaving" ? styles.red : ""}`}>
+    <div
+      className={`${styles.container} ${type === "leaving" ? styles.red : ""}`}
+    >
       <h2>
         <span>{totalBloomers}</span>
         Bloomers {type === "leaving" ? "sortants" : "entrants"}
@@ -97,9 +100,12 @@ const DateItem = ({
   date: string;
   missions: FormatedMission[];
 }) => {
+
+  const formattedDate = formatDate(date);
+
   return (
     <div className={styles.date}>
-      <p>{date}</p>
+      <p>{formattedDate}</p>
       <ul>
         {missions.map((mission) => (
           <li key={mission.id} className={styles.bloomer}>
