@@ -7,7 +7,7 @@ const BASE_URL = "http://localhost:3000";
 
 export const getMissions = async () => {
   try {
-    const response = await fetch(BASE_URL + "/missons");
+    const response = await fetch(BASE_URL + "/missions");
 
     const data = await response.json();
 
