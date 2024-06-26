@@ -17,7 +17,9 @@ export const getMissions = async () => {
       return isDateIsWithinNextMonth(new Date(mission.beginDate));
     });
 
+
     const formatedArriving = formatMissions(nextBeginningMissions, "begin");
+
 
     const sortedArriving = sortObjectByDate(formatedArriving);
 
