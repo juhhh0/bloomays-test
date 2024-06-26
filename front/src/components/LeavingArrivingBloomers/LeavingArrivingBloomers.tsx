@@ -3,6 +3,7 @@ import { getMissions } from "../../services/MissionsService";
 import styles from "./LeavingArrivingBloomers.module.scss";
 import { useQuery } from "@tanstack/react-query";
 import Bloomers from "./Bloomers/Bloomers";
+import { countMissions } from "../../utils/countMissions";
 
 const LeavingArrivingBloomers: React.FC = () => {
   const { data, isLoading, isError } = useQuery({
@@ -37,8 +38,16 @@ const LeavingArrivingBloomers: React.FC = () => {
 
   return (
     <div className={styles.modal}>
-      <Bloomers data={data.sortedArriving} type="arriving" />
-      <Bloomers data={data.sortedLeaving} type="leaving" />
+      <Bloomers
+        data={data.sortedArriving}
+        type="arriving"
+        totalBloomers={countMissions(data.sortedArriving)}
+      />
+      <Bloomers
+        data={data.sortedLeaving}
+        type="leaving"
+        totalBloomers={countMissions(data.sortedLeaving)}
+      />
     </div>
   );
 };

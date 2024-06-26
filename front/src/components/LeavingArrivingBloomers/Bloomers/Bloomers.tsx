@@ -1,18 +1,15 @@
 import { MissionsByDate } from "../../../types/types";
 import { formatDate } from "../../../utils/formatDate";
 import DateItem from "../DateItem/DateItem";
-import styles from "../LeavingArrivingBloomers.module.scss"
+import styles from "../LeavingArrivingBloomers.module.scss";
 
 type BloomersProp = {
   data: MissionsByDate;
   type: "leaving" | "arriving";
+  totalBloomers: number;
 };
 
-const Bloomers: React.FC<BloomersProp> = ({ data, type }) => {
-  const totalBloomers = Object.keys(data).reduce((acc, date) => {
-    return acc + data[date].length;
-  }, 0);
-
+const Bloomers: React.FC<BloomersProp> = ({ data, type, totalBloomers }) => {
   return (
     <div
       className={`${styles.container} ${type === "leaving" ? styles.red : ""}`}
