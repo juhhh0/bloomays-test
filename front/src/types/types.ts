@@ -1,10 +1,10 @@
-type Freelance = {
+export type Freelance = {
   firstname: string;
   lastname: string;
   email: string;
 };
 
-type Mission = {
+export type Mission = {
   id: number;
   beginDate: string;
   endDate: string;
@@ -13,7 +13,7 @@ type Mission = {
   freelance: Freelance;
 };
 
-type FormatedMission = {
+export type FormatedMission = {
   id: number;
   firstname: string;
   lastname: string;
@@ -21,4 +21,7 @@ type FormatedMission = {
   endMission: string;
 };
 
-export type { Freelance, Mission, FormatedMission };
+export type MissionsByDate = {
+  [key: string]: FormatedMission[];
+};
+

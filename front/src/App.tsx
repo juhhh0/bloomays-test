@@ -1,4 +1,4 @@
-import LeavingArrivingBloomers from "./components/LeavingArrivingBloomers";
+import LeavingArrivingBloomers from "./components/LeavingArrivingBloomers/LeavingArrivingBloomers";
 
 function App() {
   return <LeavingArrivingBloomers/>;
