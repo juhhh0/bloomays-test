@@ -3,12 +3,11 @@
   border: 2px solid black;
   width: 300px;
   height: 500px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   padding: 2rem 4rem;
   border-radius: 3px;
+  align-content: center;
+
+  overflow: scroll;
 
 
   @media screen and (max-width: 768px) {
@@ -16,7 +15,8 @@
   }
 
   .container {
-    max-width: 300px;
+    width: fit-content;
+    margin: auto;
     margin-bottom: 20px;
 
     h2 {

@@ -13,18 +13,27 @@ const LeavingArrivingBloomers: React.FC = () => {
   if (isError)
     return (
       <div className={styles.modal}>
-        Erreur lors de la récupération des données
+        <div className={styles.container}>
+          Erreur lors de la récupération des données
+        </div>
       </div>
     );
 
   if (isLoading)
     return (
       <div className={styles.modal}>
-        <img src="/loader.svg" alt="loading spinner" />
+        <div className={styles.container}>
+          <img src="/loader.svg" alt="loading spinner" />
+        </div>
       </div>
     );
 
-  if (!data) return <div className={styles.modal}>Pas de missions trouvés</div>;
+  if (!data)
+    return (
+      <div className={styles.modal}>
+        <div className={styles.container}>Pas de missions trouvés</div>
+      </div>
+    );
 
   return (
     <div className={styles.modal}>
