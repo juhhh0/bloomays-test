@@ -1,7 +1,9 @@
-import { MissionsByDate } from "../../../types/types";
-import { formatDate } from "../../../utils/formatDate";
 import DateItem from "../DateItem/DateItem";
 import styles from "../LeavingArrivingBloomers.module.scss";
+
+import { MissionsByDate } from "../../../types/types";
+
+import { formatDate } from "../../../utils/formatDate";
 
 type BloomersProp = {
   data: MissionsByDate;

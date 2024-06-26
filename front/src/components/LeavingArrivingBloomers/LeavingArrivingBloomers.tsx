@@ -1,9 +1,11 @@
 import React from "react";
-import { getMissions } from "../../services/MissionsService";
 import styles from "./LeavingArrivingBloomers.module.scss";
-import { useQuery } from "@tanstack/react-query";
 import Bloomers from "./Bloomers/Bloomers";
+
+import { useQuery } from "@tanstack/react-query";
+import { getMissions } from "../../services/MissionsService";
 import { countMissions } from "../../utils/countMissions";
+
 
 const LeavingArrivingBloomers: React.FC = () => {
   const { data, isLoading, isError } = useQuery({

@@ -1,5 +1,6 @@
-import { FormatedMission } from "../../../types/types";
 import styles from "../LeavingArrivingBloomers.module.scss";
+
+import { FormatedMission } from "../../../types/types";
 
 type DateItemProp = {
   date: string;
