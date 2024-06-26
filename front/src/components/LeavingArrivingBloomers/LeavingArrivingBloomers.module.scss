@@ -3,16 +3,11 @@
   border: 2px solid black;
   width: 300px;
   height: 500px;
-  padding: 2rem 4rem;
+  padding: 2rem 3rem;
   border-radius: 3px;
   align-content: center;
 
   overflow: scroll;
-
-
-  @media screen and (max-width: 768px) {
-    padding: 2rem 3rem;
-  }
 
   .container {
     width: fit-content;
