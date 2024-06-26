@@ -1,7 +1,8 @@
+import React from "react";
 import LeavingArrivingBloomers from "./components/LeavingArrivingBloomers/LeavingArrivingBloomers";
 
-function App() {
-  return <LeavingArrivingBloomers/>;
-}
+const App: React.FC = () => {
+  return <LeavingArrivingBloomers />;
+};
 
 export default App;
